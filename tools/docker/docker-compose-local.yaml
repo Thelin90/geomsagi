@@ -1,0 +1,24 @@
+version: '3.7'
+services:
+  # geomsagi app
+  geomsagi_app:
+    build:
+      context: ../../
+      dockerfile: Dockerfile.local.geomsagi
+    tty: true
+    volumes:
+      - ../../src:/usr/local/geomsagi/src/
+      - ../../tests:/usr/local/geomsagi/tests/
+    env_file:
+      - ./.env.local-geomsagi
+    networks:
+      - geomsagi-container
+
+  # MinIO service could be added here to replicate S3, to improve local integration tests with utilising JSON files
+
+  # add a local Database, maybe a Mongo or a Postgres, depending on data model decisions based on the data
+
+# main network
+networks:
+  geomsagi-container:
+    driver: bridge

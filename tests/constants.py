@@ -1,0 +1,4 @@
+INVOICE_STATS_PATH = "src.invoice_stats"
+MAX_VALUE = 1234
+MIN_VALUE = 1
+LIMIT = 100

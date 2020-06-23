@@ -1,0 +1,17 @@
+FROM python:3.7-slim-stretch
+
+RUN mkdir -p /usr/local/geomsagi/
+WORKDIR /usr/local/geomsagi/
+
+# Enable make command
+RUN apt-get update && apt-get install make
+
+# Add all the project files to the
+COPY Pipfile Pipfile.lock Makefile /usr/local/geomsagi/
+COPY tools/docker/.env.local-geomsagi /usr/local/geomsagi/.env
+
+RUN python -m pip install --upgrade pip
+RUN pip install pipenv
+
+# Install dependencies based on the Pipfile.lock
+RUN pipenv sync --dev --python 3.7
