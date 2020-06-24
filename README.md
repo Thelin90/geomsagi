@@ -3,6 +3,26 @@
 This project illustrates a dummy example of invoices, and verifies that these invoices follow
 a specific schema pattern. See more info under pandera section.
 
+![alt text](img/pandasdataframe.png)
+
+We all know the pain where we want to make sure we have the correct datatypes, and the correct values, would it not be great to be able to determine this in runtime?
+
+Something like:
+
+```python
+"col2": pa.Column(
+            pa.Float64,
+            checks=[
+                pa.Check.less_than_or_equal_to(20000000.00),
+                pa.Check.greater_than_or_equal_to(0.00),
+            ],
+            nullable=nullable,
+        )
+```
+
+Well there is with the help of Pandera! Please read more about it below. This project illustrates an example usage of this
+library.
+
 Code has been encapsulated with `docker`.
 
 # Requirements
